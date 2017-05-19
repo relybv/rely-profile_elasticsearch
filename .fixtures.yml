@@ -1,0 +1,18 @@
+fixtures:
+  repositories:
+    stdlib:
+      repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+      ref: "4.13.1"
+    apt : "https://github.com/puppetlabs/puppetlabs-apt.git"
+
+# profile module layout, default include ntp module
+    rspec_monitor: "git://github.com/pgomersbach/test-rspec_monitor.git"
+    archive: "https://github.com/voxpupuli/puppet-archive.git"
+    wget: "https://github.com/maestrodev/puppet-wget.git"
+    elasticsearch: "https://github.com/n1tr0g/golja-elasticsearch.git"
+    grafana: "https://github.com/voxpupuli/puppet-grafana.git"
+    yum: "https://github.com/CERIT-SC/puppet-yum.git"
+    
+
+  symlinks:
+    profile_elasticsearch: "#{source_dir}"
