@@ -15,7 +15,6 @@ class profile_elasticsearch::install {
   class {'elasticsearch':
     manage_repo  => true,
     repo_version => '5.x',
-    require      => Class['java'],
   }
 
   elasticsearch::instance { 'es-01': }
