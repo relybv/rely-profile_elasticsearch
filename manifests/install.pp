@@ -17,7 +17,11 @@ class profile_elasticsearch::install {
     repo_version => '5.x',
   }
 
-  elasticsearch::instance { 'es-01': }
+  elasticsearch::instance { 'es-01':
+    config => {
+      'network.host' => '0.0.0.0',
+    },
+  }
 
   class { 'kibana':
     config => {
