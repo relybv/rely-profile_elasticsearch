@@ -17,10 +17,17 @@ class profile_elasticsearch::install {
     repo_version => '5.x',
   }
 
+  es_instance_conn_validator { 'es-01':
+    server  => 'localhost',
+    port    => '9200',
+    require => Class['elasticsearch'],
+  }
+
   elasticsearch::instance { 'es-01':
-    config => {
+    config  => {
       'network.host' => '0.0.0.0',
     },
+    require => Es_Instance_Conn_Validator['es-01'],
   }
 
   class { 'kibana':
