@@ -23,6 +23,7 @@ class profile_elasticsearch::install {
   class { 'kibana':
     config => {
       'server.port' => '8080',
+      'server.host' => '0.0.0.0',
     },
   }
 

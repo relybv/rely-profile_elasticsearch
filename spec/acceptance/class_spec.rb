@@ -27,7 +27,7 @@ describe 'profile_elasticsearch class' do
       it { is_expected.to be_installed }
     end
 
-    describe service('es-01') do
+    describe service('elasticsearch-es-01') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
     end
