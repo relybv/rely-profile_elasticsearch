@@ -20,8 +20,6 @@ describe 'profile_elasticsearch class' do
         # Run it twice and test for idempotency
         apply_manifest(pp, :catch_failures => true)
 #        apply_manifest(pp, :catch_changes  => true)
-        # wait because elasticsearch takes few seconds to start
-        shell("/bin/sleep 10")
       end
     end
 
@@ -29,12 +27,12 @@ describe 'profile_elasticsearch class' do
       it { is_expected.to be_installed }
     end
 
-    describe service('elasticsearch') do
+    describe service('es-01') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
     end
 
-    describe port(8088) do
+    describe port(9200) do
       it { should be_listening }
     end
 

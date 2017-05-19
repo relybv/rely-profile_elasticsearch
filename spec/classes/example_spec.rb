@@ -21,6 +21,8 @@ describe 'profile_elasticsearch' do
           it { is_expected.to contain_class('elasticsearch') }
           it { is_expected.to contain_class('kibana') }
 
+          it { is_expected.to contain_elasticsearch__instance('es-01') }
+
         end
       end
     end
