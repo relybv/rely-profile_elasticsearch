@@ -13,7 +13,7 @@ class profile_elasticsearch::install {
   }
 
   class {'elasticsearch':
-    manage_repo  => true,
+    manage_repo  => false,
     repo_version => '5.x',
   }
 
@@ -30,11 +30,12 @@ class profile_elasticsearch::install {
   }
 
   class { 'kibana':
-    config  => {
+    manage_repo => false,
+    config      => {
       'server.port' => '8080',
       'server.host' => '0.0.0.0',
     },
-    require => Es_Instance_Conn_Validator['es-01'],
+    require     => Es_Instance_Conn_Validator['es-01'],
   }
 
 }
