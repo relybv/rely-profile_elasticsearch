@@ -8,8 +8,8 @@ class profile_elasticsearch::install {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  Apt::Pin <| |> -> Package <| |>
-  Apt::Source <| |> -> Package <| |>
+  Class['apt::update'] -> Package['elasticsearch']
+  Class['apt::update'] -> Package['kibana']
 
   ensure_resource('apt::source', 'elasticrepo', {'ensure' => 'present', 'location' => 'https://artifacts.elastic.co/packages/5.x/apt', 'release' => 'stable', 'repos' => 'main', 'key' => { 'id' => '46095ACC8548582C1A2699A9D27D666CD88E42B4', 'source' => 'https://artifacts.elastic.co/GPG-KEY-elasticsearch',} })
 
