@@ -37,8 +37,9 @@ class profile_elasticsearch::install {
   class { 'kibana':
     manage_repo => false,
     config      => {
-      'server.port' => '8080',
-      'server.host' => '0.0.0.0',
+      'server.port'   => '8080',
+      'server.host'   => '0.0.0.0',
+      'logging.quiet' => true,
     },
     require     => Es_Instance_Conn_Validator['es-01'],
   }
