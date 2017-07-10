@@ -35,8 +35,8 @@ class profile_elasticsearch::install {
     require => Elasticsearch::Instance['es-01'],
   }
 
-  exec { 'install_beats_template_dashboards':
-    command => '/usr/share/filebeat/scripts/import_dashboards',
+  exec { 'install_beats_template':
+    command => '/usr/share/filebeat/scripts/import_dashboards -only-index',
     require => Es_Instance_Conn_Validator['es-01'],
   }
 
