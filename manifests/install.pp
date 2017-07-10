@@ -35,6 +35,11 @@ class profile_elasticsearch::install {
     require => Elasticsearch::Instance['es-01'],
   }
 
+  exec { 'install_beats_template_dashboards':
+    command => '/usr/share/filebeat/scripts/import_dashboards',
+    require => Es_Instance_Conn_Validator['es-01'],
+  }
+
   class { 'logstash':
     manage_repo => false,
   }
