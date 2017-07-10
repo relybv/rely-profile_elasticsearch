@@ -1,0 +1,9 @@
+### logstash output template ###
+output {
+  elasticsearch {
+    hosts => <%= @monitor_address %>
+    manage_template => false
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+}

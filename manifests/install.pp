@@ -10,6 +10,7 @@ class profile_elasticsearch::install {
 
   Class['apt::update'] -> Package['elasticsearch']
   Class['apt::update'] -> Package['kibana']
+  Class['apt::update'] -> Package['logstash']
 
   ensure_resource('apt::source', 'elasticrepo', {'ensure' => 'present', 'location' => 'https://artifacts.elastic.co/packages/5.x/apt', 'release' => 'stable', 'repos' => 'main', 'key' => { 'id' => '46095ACC8548582C1A2699A9D27D666CD88E42B4', 'source' => 'https://artifacts.elastic.co/GPG-KEY-elasticsearch',} })
 
@@ -32,6 +33,10 @@ class profile_elasticsearch::install {
     server  => 'localhost',
     port    => '9200',
     require => Elasticsearch::Instance['es-01'],
+  }
+
+  class { 'logstash':
+    manage_repo => false,
   }
 
   class { 'kibana':

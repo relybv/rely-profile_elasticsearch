@@ -8,4 +8,15 @@ class profile_elasticsearch::config {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
+  logstash::configfile { 'inputs':
+    content => template('profile_elasticsearch/logstash/input.conf.erb'),
+  }
+
+  logstash::configfile { 'filters':
+    content => template('profile_elasticsearch/logstash/filter.conf.erb'),
+  }
+
+  logstash::configfile { 'outputs':
+    content => template('profile_elasticsearch/logstash/output.conf.erb'),
+  }
 }

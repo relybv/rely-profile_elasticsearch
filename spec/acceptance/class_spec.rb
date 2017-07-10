@@ -17,9 +17,8 @@ describe 'profile_elasticsearch class' do
         class { 'profile_elasticsearch': }
         EOS
 
-        # Run it twice and test for idempotency
+        # Run it and test for errors
         apply_manifest(pp, :catch_failures => true)
-#        apply_manifest(pp, :catch_changes  => true)
       end
     end
 
@@ -42,6 +41,15 @@ describe 'profile_elasticsearch class' do
 
     describe port(8080) do
       it { should be_listening }
+    end
+
+    describe package('logstash') do
+      it { is_expected.to be_installed }
+    end
+
+    describe service('logstash') do
+      it { is_expected.to be_enabled }
+      it { is_expected.to be_running }
     end
 
   end
