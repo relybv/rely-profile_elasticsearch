@@ -20,7 +20,4 @@ class profile_elasticsearch::config {
     content => template('profile_elasticsearch/logstash/output.conf.erb'),
   }
 
-  exec { 'install_beats_template':
-    command => '/usr/share/filebeat/scripts/import_dashboards -only-index',
-  }
 }
