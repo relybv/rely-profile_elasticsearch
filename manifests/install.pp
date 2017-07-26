@@ -49,4 +49,10 @@ class profile_elasticsearch::install {
     require     => Es_Instance_Conn_Validator['es-01'],
   }
 
+
+  exec {'wait for kibana':
+    require => Class['kibana'],
+    command => '/usr/bin/wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:8080/',
+  }
+
 }

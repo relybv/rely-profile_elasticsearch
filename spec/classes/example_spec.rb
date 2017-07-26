@@ -27,6 +27,8 @@ describe 'profile_elasticsearch' do
           it { is_expected.to contain_apt__source('elasticrepo') }
           it { is_expected.to contain_es_instance_conn_validator('es-01') }
 
+          it { is_expected.to contain_Exec('wait for kibana') }
+
           it { is_expected.to contain_Logstash__configfile('inputs') }
           it { is_expected.to contain_Logstash__configfile('filters') }
           it { is_expected.to contain_Logstash__configfile('outputs') }
